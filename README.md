@@ -28,6 +28,8 @@ to classify with google cloud NLP put your .json credentials for the API in the 
 
 this will output a list of wikipedia articles based on chat content
 
+![Screenshot 2023-07-01 181915](https://github.com/lefth-nd/gpt-parse/assets/74050386/0854e3c2-dbce-403f-9457-4ae20b749597)
+
 ### Notes
 
 ---
