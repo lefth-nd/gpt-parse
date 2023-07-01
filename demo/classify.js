@@ -65,7 +65,7 @@ function classifyDocument(content) {
                     categories.forEach(function (category, index) {
                         console.log("Category ".concat(index + 1, ": ").concat(category.name));
                     });
-                    return [2 /*return*/, categories];
+                    return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
                     console.error("Error:", error_1);
@@ -76,15 +76,13 @@ function classifyDocument(content) {
     });
 }
 var files = (0, main_1.default)(folder);
-var cat_list = new Map();
 for (var i = 0; i < files.length; i++) {
     var filePath = files[i];
     var documentContent = fs.readFileSync("".concat(folder, "/") + filePath, "utf-8");
     try {
-        cat_list.set(i, classifyDocument(documentContent));
+        classifyDocument(documentContent);
     }
     catch (error) {
         console.log("too small");
     }
 }
-console.log(cat_list);

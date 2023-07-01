@@ -4,7 +4,7 @@ import random
 
 folder = "output"
 
-limit = 9000
+limit = 900
 
 if ("-c" in sys.argv):
     chunk = True
