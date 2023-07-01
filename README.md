@@ -18,6 +18,10 @@ to classify with google cloud NLP put your .json credentials for the API in the 
 
 `node demo/classify.js`
 
+### Example output from classify using google API
+
+![example](https://github.com/lefth-nd/gpt-parse/assets/74050386/761aa344-8c21-4a8c-95ba-550faa39ce96)
+
 ### Notes
 
 ---
