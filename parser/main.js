@@ -26,6 +26,7 @@ function parseAndWrite(file) {
     console.log("Parsing conversations.");
     var jsontext = fs.readFileSync(file, "utf-8");
     var jsonOBJ = JSON.parse(jsontext);
+    console.log(jsonOBJ.parse("author"));
     if (!fs.existsSync(folder)) {
         fs.mkdirSync(folder);
     }

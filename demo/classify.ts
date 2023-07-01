@@ -1,5 +1,5 @@
 import { LanguageServiceClient } from "@google-cloud/language";
-import getFiles from "../main";
+import getFiles from "../parser/main";
 import * as fs from "fs";
 
 const folder = "merged";
