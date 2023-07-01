@@ -2,14 +2,9 @@ import os
 import sys
 import random
 
-folder = "json"
-try:
-    files = (os.listdir(folder))
-except:
-    os.mkdir("json")
-    files = (os.listdir(folder))
+folder = "output"
 
-limit = 400000
+limit = 90000
 
 if ("-c" in sys.argv):
     chunk = True
@@ -27,19 +22,29 @@ def getNewName():
     name = "merged/merged_"+str(num1)+"_"+str(num2)+".txt"
     return name
 
-filename = "merged/merged.txt"
-print("Chunking? "+chunk)
-for i in files:
+dest_filename = "merged/merged.txt"
+print("Chunking? ",chunk)
+tree = os.walk(folder)
+for f in tree:
+    print(f[0])
     try:
-        fileSize = os.path.getsize(filename)
+        subfolder_name = f[0].split("\\")[1]
     except:
-        fileSize = 0
-    if (fileSize > limit and chunk):
-        filename = getNewName()
-    nFile = open(filename, "a")
-    f = open(folder+"/"+i, "r", encoding="utf-8")
-    lines = f.readlines()
-    try:
-        nFile.writelines(lines)
-    except:
-        print("Ignoring incompatible char...")
+        print("no subfolder")
+    for filename in f[2]:
+        if ("assistant" in filename or "user" in filename):
+            try:
+                fileSize = os.path.getsize(dest_filename)
+            except:
+                fileSize = 0
+            if (fileSize > limit and chunk):
+                dest_filename = getNewName()
+            nFile = open(dest_filename, "a")
+            print("opening")
+            print(folder+"/"+subfolder_name+"/"+filename)
+            f = open(folder+"/"+subfolder_name+"/"+filename, "r", encoding="utf-8")
+            lines = f.readlines()
+            try:
+                nFile.writelines(lines)
+            except:
+                print("Ignoring incompatible char...")

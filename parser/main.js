@@ -4,7 +4,7 @@ exports.parseAndWrite = void 0;
 var fs = require("fs");
 var querystring_1 = require("querystring");
 // testing google cloud NLP
-var folder = "json";
+var folder = "output";
 // default filetype txt
 var filetype = "txt";
 if (process.argv.length === 2) {
@@ -69,19 +69,7 @@ function parseAndWrite(file) {
 exports.parseAndWrite = parseAndWrite;
 function getFiles(path) {
     try {
-        var files = [];
-        var subfolders = fs.readdirSync(path);
-        for (var _i = 0, subfolders_1 = subfolders; _i < subfolders_1.length; _i++) {
-            var f = subfolders_1[_i];
-            var files_in_subfolder = fs.readdirSync(path + "/" + f);
-            for (var _a = 0, files_in_subfolder_1 = files_in_subfolder; _a < files_in_subfolder_1.length; _a++) {
-                var v = files_in_subfolder_1[_a];
-                var file = v;
-                files.push(file);
-            }
-        }
-        console.log(files);
-        console.log(files.length);
+        var files = fs.readdirSync(path);
         return files;
     }
     catch (error) {
