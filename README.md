@@ -16,7 +16,7 @@ this will merge all into one text file. use without -c to skip chunk and just ha
 
 to classify with google cloud NLP put your .json credentials for the API in the root directory and run (make sure you rename your credential file to credentials.json)
 
-`tsc demo/classify.ts && node demo/classify.js`
+`node demo/classify.js`
 
 ### Notes
 
