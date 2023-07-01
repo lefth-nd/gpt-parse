@@ -8,9 +8,7 @@ var folder = "output";
 // default filetype txt
 var filetype = "txt";
 if (process.argv.length === 2) {
-    console.error("Need filetype argument.");
-    console.log("Eg. tsc run.ts; node run.js -md");
-    process.exit(1);
+    filetype = "txt";
 }
 else {
     filetype = process.argv[2].substring(1);

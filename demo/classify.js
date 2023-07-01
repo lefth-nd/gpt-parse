@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var language_1 = require("@google-cloud/language");
-var main_1 = require("../main");
+var main_1 = require("../parser/main");
 var fs = require("fs");
 var folder = "merged";
 function classifyDocument(content) {
