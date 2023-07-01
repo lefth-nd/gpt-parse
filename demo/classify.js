@@ -42,12 +42,10 @@ var fs = require("fs");
 var folder = "merged";
 function classifyDocument(content) {
     return __awaiter(this, void 0, void 0, function () {
-        var category_list, val, client, classification, categories, error_1;
+        var client, classification, categories, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    category_list = new Map();
-                    val = 0;
                     client = new language_1.LanguageServiceClient({
                         keyFilename: "credentials.json",
                     });
@@ -63,12 +61,11 @@ function classifyDocument(content) {
                 case 2:
                     classification = (_a.sent())[0];
                     categories = classification.categories || [];
-                    console.log(categories);
                     console.log("Document Categories:");
                     categories.forEach(function (category, index) {
-                        //console.log(`Category ${index + 1}: ${category.name}`);
+                        console.log("Category ".concat(index + 1, ": ").concat(category.name));
                     });
-                    return [3 /*break*/, 4];
+                    return [2 /*return*/, categories];
                 case 3:
                     error_1 = _a.sent();
                     console.error("Error:", error_1);
@@ -79,13 +76,15 @@ function classifyDocument(content) {
     });
 }
 var files = (0, main_1.default)(folder);
+var cat_list = new Map();
 for (var i = 0; i < files.length; i++) {
     var filePath = files[i];
     var documentContent = fs.readFileSync("".concat(folder, "/") + filePath, "utf-8");
     try {
-        classifyDocument(documentContent);
+        cat_list.set(i, classifyDocument(documentContent));
     }
     catch (error) {
         console.log("too small");
     }
 }
+console.log(cat_list);
