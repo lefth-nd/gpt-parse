@@ -22,6 +22,12 @@ to classify with google cloud NLP put your .json credentials for the API in the 
 
 ![example](https://github.com/lefth-nd/gpt-parse/assets/74050386/761aa344-8c21-4a8c-95ba-550faa39ce96)
 
+### Analyse Entities
+
+`node demo/analyse.js`
+
+this will output a list of wikipedia articles based on chat content
+
 ### Notes
 
 ---
