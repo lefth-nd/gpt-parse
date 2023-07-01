@@ -26,7 +26,6 @@ function parseAndWrite(file) {
     console.log("Parsing conversations.");
     var jsontext = fs.readFileSync(file, "utf-8");
     var jsonOBJ = JSON.parse(jsontext);
-    console.log(jsonOBJ.parse("author"));
     if (!fs.existsSync(folder)) {
         fs.mkdirSync(folder);
     }
@@ -70,7 +69,19 @@ function parseAndWrite(file) {
 exports.parseAndWrite = parseAndWrite;
 function getFiles(path) {
     try {
-        var files = fs.readdirSync(path);
+        var files = [];
+        var subfolders = fs.readdirSync(path);
+        for (var _i = 0, subfolders_1 = subfolders; _i < subfolders_1.length; _i++) {
+            var f = subfolders_1[_i];
+            var files_in_subfolder = fs.readdirSync(path + "/" + f);
+            for (var _a = 0, files_in_subfolder_1 = files_in_subfolder; _a < files_in_subfolder_1.length; _a++) {
+                var v = files_in_subfolder_1[_a];
+                var file = v;
+                files.push(file);
+            }
+        }
+        console.log(files);
+        console.log(files.length);
         return files;
     }
     catch (error) {

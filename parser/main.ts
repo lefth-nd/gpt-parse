@@ -75,7 +75,15 @@ export function parseAndWrite(file: string) {
 
 export default function getFiles(path: string): string[] {
   try {
-    const files = fs.readdirSync(path);
+    const files = [] as string[];
+    const subfolders = fs.readdirSync(path);
+    for (const f of subfolders) {
+      const files_in_subfolder = fs.readdirSync(path + "/" + f);
+      for (const v of files_in_subfolder) {
+        const file = v as string;
+        files.push(file);
+      }
+    }
     return files;
   } catch (error) {
     console.log(error);
