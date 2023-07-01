@@ -13,7 +13,7 @@ if (process.argv.length === 2) {
 else {
     filetype = process.argv[2].substring(1);
 }
-var conversationCount = 500; // need a better way to find this
+var conversationCount = 265; // need a better way to find this
 function genName() {
     var name = Math.floor(Math.random() * Math.pow(2, 16)).toString(16);
     var other = Math.floor(Math.random() * Math.pow(2, 16)).toString(16);
@@ -29,7 +29,13 @@ function parseAndWrite(file) {
     }
     var _loop_1 = function (i) {
         console.log(i);
-        console.log(jsonOBJ[i].title);
+        try {
+            console.log(jsonOBJ[i].title);
+        }
+        catch (err) {
+            console.log("No more conversations.");
+            process.exit(0);
+        }
         var sf = jsonOBJ[i].title;
         var subfolder = sf
             .replace(/ /g, "_")
@@ -38,7 +44,9 @@ function parseAndWrite(file) {
             .replace(/\//g, "_")
             .replace(/\\/g, "_")
             .replace(/\"/g, "_")
-            .replace(/\'/g, "_");
+            .replace(/\'/g, "_")
+            .replace(/\*/g, "_")
+            .replace(/\n/g, "_");
         if (!fs.existsSync(folder + "/" + subfolder)) {
             fs.mkdirSync(folder + "/" + subfolder);
         }

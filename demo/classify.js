@@ -42,10 +42,12 @@ var fs = require("fs");
 var folder = "merged";
 function classifyDocument(content) {
     return __awaiter(this, void 0, void 0, function () {
-        var client, classification, categories, error_1;
+        var category_list, val, client, classification, categories, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    category_list = new Map();
+                    val = 0;
                     client = new language_1.LanguageServiceClient({
                         keyFilename: "credentials.json",
                     });
@@ -61,9 +63,10 @@ function classifyDocument(content) {
                 case 2:
                     classification = (_a.sent())[0];
                     categories = classification.categories || [];
+                    console.log(categories);
                     console.log("Document Categories:");
                     categories.forEach(function (category, index) {
-                        console.log("Category ".concat(index + 1, ": ").concat(category.name));
+                        //console.log(`Category ${index + 1}: ${category.name}`);
                     });
                     return [3 /*break*/, 4];
                 case 3:
