@@ -15,7 +15,7 @@ if (process.argv.length === 2) {
   filetype = process.argv[2].substring(1);
 }
 
-const conversationCount = 3; // need a better way to find this
+const conversationCount = 500; // need a better way to find this
 
 function genName(): string {
   const name = Math.floor(Math.random() * Math.pow(2, 16)).toString(16);
@@ -37,7 +37,15 @@ export function parseAndWrite(file: string) {
     console.log(i);
     console.log(jsonOBJ[i].title);
     const sf = jsonOBJ[i].title as string;
-    const subfolder = sf.replace(/ /g, "_");
+    const subfolder = sf
+      .replace(/ /g, "_")
+      .replace(/:/g, "_")
+      .replace(/\?/g, "_")
+      .replace(/\//g, "_")
+      .replace(/\\/g, "_")
+      .replace(/\"/g, "_")
+      .replace(/\'/g, "_")
+      .replace(/\*/g, "_");
     if (!fs.existsSync(folder + "/" + subfolder)) {
       fs.mkdirSync(folder + "/" + subfolder);
     }
