@@ -40,7 +40,7 @@ this whole thing could have been written in python but I've been exploring types
 
 use ; instead of && if on windows.
 
-merging chops the conversations into 400000 byte chunks to be within the limit for google's api.
+merging chops the conversations into 400000\* byte chunks to be within the limit for google's api.
 
 must have Google Cloud Natural Language API enabled and the key pair for your service worker in a .json file for classify.ts to work.
 
@@ -49,3 +49,9 @@ use arguments to specify filetype:
 `node run.js -md`
 
 -md markdown : -txt text : -json json
+
+**only tested on windows**
+
+---
+
+\* still experimenting with this value
